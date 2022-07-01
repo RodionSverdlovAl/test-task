@@ -3,7 +3,7 @@ import '../styles/header.scss';
 const Header:React.FC = () =>{
 
     const [avatar, setAvatar] = useState('../assets/default-avatar.png');
-    const [username, setUsername] = useState('Пользователь не авторизован')
+    const [username, setUsername] = useState('Вход в аккаунт');
 
     return(
         <div className="header">

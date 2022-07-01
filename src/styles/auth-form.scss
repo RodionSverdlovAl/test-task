@@ -1,0 +1,104 @@
+
+.Auth-form{
+    font-family: 'Manrope', sans-serif;
+    margin-left: 373px;
+    position: relative;
+    z-index: 5;
+    background-color: rgb(255, 255, 255);
+    width: 650px;
+    height: 858px;
+    h1{
+        padding-top: 80px;
+        padding-bottom: 20px;
+        padding-left: 199px;
+    }
+    .auth{
+        margin-left: 110px;
+        p{
+            margin:20px 0 5px 0;
+            font-size: 14px;
+            color: #676A71;
+        }
+        input{
+            width: 430px;
+            height: 56px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            padding-left: 18px;
+            background-color: #F6F6F9;
+            &::placeholder{
+                // padding:18px;
+                font-size: 14px;
+                color:#C6C6C6;
+            }
+            &:focus{
+                border: 1px solid #009CB4;
+                outline: #009CB4;
+            }
+        }
+        .checkbox{
+            display: flex;
+            input{
+                width: 20px;
+                height: 20px;
+                margin-top: 24px;
+            }
+            p{
+                margin-top: 21px;
+                margin-left:14px;
+                font-size: 16px;
+                color: #A8AAAE;
+            }
+        }
+        button{
+            width: 430px;
+            height: 56px;
+            margin-top: 21px;
+            border:none;
+            background-color: #009CB4;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .forgot-password{
+            margin-top: 20px;
+            margin-bottom: 40px;
+            a{
+               color: #009CB4;
+               margin-left: 126px;
+               font-size: 16px;
+            }
+            
+        }
+        .additional-auth{
+            width: 430px;
+            height: 56px;
+            border: 1px solid #C6C6C6;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            a{
+                color:#4D4D4F;
+                
+            }
+            p{
+                margin-top: 16px;
+            }
+        }
+
+    }
+    .reg-link{
+        text-align: center;
+        margin-top: 40px;
+        font-size: 16px;
+        a{
+            color:#009CB4;
+            font-weight: 600;
+        }
+    }
+}
