@@ -1,20 +1,24 @@
 import { useState } from "react"
+import '../styles/header.scss';
 const Header:React.FC = () =>{
 
     const [avatar, setAvatar] = useState('../assets/default-avatar.png');
     const [username, setUsername] = useState('Пользователь не авторизован')
 
     return(
-        <div>
-            <div className="logo"><img src="../assets/Vector.png" alt="logo" /></div>
-            <input type="text" />
-            <button><img src="" alt="" /></button>
-            <button><img src="" alt="" /></button>
+        <div className="header">
+            <div className="logo"><img src="../assets/Logo.png" alt="logo" /></div>
+            <input className="search-input" placeholder="Поиск" type="text" />
+            <button className="header-btn1"><img src="../assets/calendar.png" alt="calendar" /></button>
+            <button className="header-btn2"><img src="../assets/kalakolchik.png" alt="уведомления" /></button>
             <div className="user">
                 <div className="avatar">
-                    <img src={avatar} alt="avatar" />
+                    <img src={avatar} height={48} alt="avatar" />
                 </div>
-                <p className="username">{username}</p>
+                <div>
+                    <p className="username">{username}</p>
+                </div>
+               
             </div>
         </div>
     )

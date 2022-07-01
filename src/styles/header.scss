@@ -1,0 +1,58 @@
+.header{
+    background-color: #fff;
+    width: 100%px;
+    display: flex;
+    height: 80px;
+    .search-input{
+        width: 270px;
+        height: 48px;
+        position: absolute;
+        top:16px;
+        left: 315px;
+        border: none;
+        background: #F9F9FB;
+        border-radius: 5px;
+    }
+    .logo{
+        position: absolute;
+        top: 20px;
+        left: 115px
+    }
+    .header-btn1{
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top:16px;
+        left: 895px;
+        border-radius: 100px;
+        border:none;
+    }
+    .header-btn2{
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top:16px;
+        left: 963px;
+        border-radius: 100px;
+        border:none;
+    }
+    .user{
+        position: absolute;
+        left: 1053px;
+        display: flex;
+        .avatar{
+            position: absolute;
+            top: 16px;
+            background-color: white;
+            border-radius: 100px;
+        }
+        p{
+            position: absolute;
+            top: 29px;
+            width: 300px;
+            left: 58px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+        }
+    }
+}

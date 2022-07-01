@@ -1,0 +1,117 @@
+.footer{
+    font-family: 'Manrope', sans-serif;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 478px;
+    position: relative;
+    
+    ul{
+        list-style: none;
+    }
+    h3{
+        font-size: 18px;
+    }
+    li{
+        color:#4D4D4F;
+        font-size: 14px;
+    }
+    .general-information{
+        position: absolute;
+        top: 80px;
+        left: 115px;
+        width: 370px;
+        p{
+            margin: 20px 0 0 0;
+            color: #676A71;
+            font-size: 14px;
+            width: 270px;
+        }
+        .dev-info{
+            margin: 40px 0 0 0;
+            h3{
+                color: #4D4D4F;
+                font-size: 16px;
+                margin: 0 0 10px 0;
+            }
+            .company-name{
+                color: #676A71;
+                font-size: 14px;
+            }
+            .address{
+                color: #A8AAAE;
+                font-size: 14px;
+                margin: 5px 0 0 0;
+            }
+        }
+    }
+    .information{
+        position: absolute;
+        top: 80px;
+        left: 515px;
+        ul{
+            margin: 20px 0 0 0;
+            li{
+                margin: 0 0 10px 0;
+                
+            }
+        }
+    }
+    .tech-support{
+        position: absolute;
+        top: 80px;
+        left: 715px;
+        width: 270px;
+        p{
+            margin: 20px 0 10px 0;
+            font-size: 14px;
+            color: #676A71;
+        }
+        hr{
+            width: 270px;
+            height: 1px;
+            border: none;
+            background: #EDEDF4;
+        }
+        ul{
+            margin: 10px 0 0 0;
+            li{
+                margin: 0 0 10px 0;
+            }
+        }
+    }
+    .contacts{
+        position: absolute;
+        top: 80px;
+        left: 1015px;
+        ul{
+            margin: 20px 0 0 0;
+            li{
+                margin: 0 0 10px 0;
+                a{
+                    text-decoration: none;
+                    color: #009CB4;
+                }
+            }
+            
+        }
+    }
+    
+    .bottom{
+        position: absolute;
+        top: 358px;
+        left:115px;
+        hr{
+            width: 1170px;
+            height: 1px;
+            border:none;
+            background-color: #EDEDF4;
+        }
+        p{
+            margin: 20px 0 0 0;
+            margin-left: 375px;
+            font-size: 14px;
+            color: #C6C6C6;
+        }
+    }
+    
+}
