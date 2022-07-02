@@ -40,9 +40,10 @@
         .checkbox{
             display: flex;
             input{
-                width: 20px;
-                height: 20px;
+                width: 16px;
+                height: 16px;
                 margin-top: 24px;
+                background-color: #33A6FF;
             }
             p{
                 margin-top: 21px;
@@ -63,6 +64,12 @@
             font-weight: 700px;
             border-radius: 5px;
             cursor: pointer;
+            &:hover{
+                background-color: #01B8D4;
+            }
+            &:active{
+                background-color: #01BEDB;
+            }
         }
         .forgot-password{
             margin-top: 20px;
@@ -88,6 +95,12 @@
             }
             p{
                 margin-top: 16px;
+            }
+            &:hover{
+                border: 1px solid #01BEDB;
+                a{
+                    color: #01BEDB;
+                }
             }
         }
 

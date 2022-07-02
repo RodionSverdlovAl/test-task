@@ -6,7 +6,7 @@ const AuthForm = () =>{
             <h1>АВТОРИЗАЦИЯ</h1>
 
             <div className="auth">
-                <p>Имя</p>
+                <p style={{color:'#009CB4'}}>Имя</p>
                 <input type="text" placeholder='Введите имя' />
                 <p>Пароль</p>
                 <input type="password" placeholder='Введите пароль'/><br />

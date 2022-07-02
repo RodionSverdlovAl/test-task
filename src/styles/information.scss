@@ -1,0 +1,62 @@
+.information-landing{
+    font-family: 'Manrope', sans-serif;
+    background-color: #F9F9FB;
+    height: 662px;
+    width: 100%;
+    position: relative;
+    .description{
+        position: absolute;
+        top: 110px;
+        left:115px;
+
+        width: 450px;
+        height: 346px;
+
+        h1{
+            font-size: 48px;
+            color: #231F20;
+            margin-bottom: 20px;
+        }
+    }
+    img{
+        position: absolute;
+        left:780px;
+        top: 80px;
+    }
+    p{
+        font-size: 18px;
+        color: #676A71;
+    }
+    .count-blok{
+        margin-top: 20px;
+        font-size: 18px;
+        span{
+            color:  #009CB4;
+            font-weight: 500;
+        }
+    }
+    .search{
+        position: absolute;
+        top: 496px;
+        left:115px;
+        input{
+            border: none;
+            width: 330px;
+            height: 56px;
+            background-color: #fff;
+            padding-left: 18px;
+            font-size: 14px;
+        }
+        button{
+            width: 120px;
+            height: 56px;
+            border-radius: 0px 5px 5px 0px;
+            border:none;
+            background-color: #009CB4;
+            font-size: 18px;
+            color:white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+}
