@@ -46,13 +46,15 @@
             background-color: white;
             border-radius: 100px;
         }
-        p{
+        a{
             position: absolute;
             top: 29px;
             width: 300px;
             left: 58px;
             font-family: 'Manrope', sans-serif;
             font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
         }
     }
 }

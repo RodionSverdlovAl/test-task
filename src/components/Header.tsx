@@ -1,5 +1,6 @@
 import { useState } from "react"
 import '../styles/header.scss';
+import {Link} from 'react-router-dom'
 const Header:React.FC = () =>{
 
     const [avatar, setAvatar] = useState('../assets/default-avatar.png');
@@ -7,7 +8,8 @@ const Header:React.FC = () =>{
 
     return(
         <div className="header">
-            <div className="logo"><img src="../assets/Logo.png" alt="logo" /></div>
+            <Link to='/'><div className="logo"><img src="../assets/Logo.png" alt="logo" /></div></Link>
+            
             <input className="search-input" placeholder="Поиск" type="text" />
             <button className="header-btn1"><img src="../assets/calendar.png" alt="calendar" /></button>
             <button className="header-btn2"><img src="../assets/kalakolchik.png" alt="уведомления" /></button>
@@ -16,7 +18,7 @@ const Header:React.FC = () =>{
                     <img src={avatar} height={48} alt="avatar" />
                 </div>
                 <div>
-                    <p className="username">{username}</p>
+                    <Link to='/auth' className="username">{username}</Link>
                 </div>
                
             </div>
