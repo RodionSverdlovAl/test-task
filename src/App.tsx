@@ -2,9 +2,6 @@ import React from 'react';
 
 import './App.scss';
 import AuthForm from './components/AuthForm';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Information from './components/Information';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Layout } from './components/Layout';
 import { LandingPage } from './pages/LandingPage';
@@ -23,10 +20,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      
-        {/* <Header/>
-         <Information/>
-        <Footer/> */}
     </div>
   );
 }
