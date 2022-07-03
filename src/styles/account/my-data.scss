@@ -1,0 +1,127 @@
+.my-data{
+    .photo-hello{
+        img{
+            position: absolute;
+            top:170px;
+            left:515px;
+            width: 64px;
+            height: 64px;
+            border-radius: 100px;
+        }
+        h3{
+            position: absolute;
+            top:185.5px;
+            left: 599px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+    }
+    hr{
+        width: 770px;
+        height: 1px;
+        background-color: #EDEDF4;
+        border:none;
+        position: absolute;
+        top: 270px;
+        left:515px;
+    }
+    input{
+        width: 352px;
+        height: 56px;
+        background-color: #F6F6F9;
+        border:none;
+        border-radius: 5px;
+        padding-left: 18px;
+    }
+    
+    select{
+        width: 370px;
+        height: 56px;
+        background-color: #F6F6F9;
+        border:none;
+        border-radius: 5px;
+        padding-left: 18px;
+    }
+    .general-data{
+        position: absolute;
+        top:307px;
+        left:515px;
+
+        
+        form{
+            position: relative;
+            p{
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+            .first-name{
+                position: absolute;
+                top:20px;
+            }
+            .second-name{
+                position: absolute;
+                top:20px;
+                left: 400px;
+            }
+            .father-name{
+                position: absolute;
+                top:120px;
+            }
+            .state{
+                position: absolute;
+                top:120px;
+                left: 400px;
+            }
+            .city{
+                position: absolute;
+                top:220px;
+            }
+            .mobile-phone{
+                position: absolute;
+                top:220px;
+                left: 400px;
+            }
+        }
+    }
+    .middle-hr{
+        top: 668px
+    }
+    .password-form{
+        position:absolute;
+        top: 705px;
+        left:515px;
+
+        p{
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .first-password{
+            position: absolute;
+            top: 45px;
+        }
+        .second-password{
+            position: absolute;
+            top: 45px;
+            left: 400px;
+        }
+    }
+    .bottom-hr{
+        top: 866px
+    }
+    
+    .save{
+        width: 270px;
+        height: 56px;
+        border:none;
+        border-radius: 5px;
+        color:white;
+        background-color: #009CB4;
+        font-weight: 700px;
+        font-size: 16px;
+        position: absolute;
+        top:903px;
+        left:515px;
+        cursor:pointer;
+    }
+}

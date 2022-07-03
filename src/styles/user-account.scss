@@ -1,10 +1,13 @@
-.user-account{
+.user-accoutn-page{
     position: relative;
     z-index: 5;
     width: 100%;
     height: 1039px;
     background-color: rgb(255, 255, 255);
     font-family: 'Manrope', sans-serif;
+}
+
+.user-account{  
     h2{
         position: absolute;
         top: 80px;
@@ -24,6 +27,7 @@
             width: 270px;
             height: 72px;
             border: 1px solid #EDEDF4;
+            
             position: relative;
             svg{
                 position: absolute;
@@ -41,10 +45,15 @@
         }
         &.active{
             div{
+                border: 1px solid #009CB4;
+                border-radius: 5px;
                 svg{
                     path{
-                        fill: blue;
+                        fill: #009CB4;
                     }
+                }
+                p{
+                    color: #009CB4;
                 }
             }
         }
