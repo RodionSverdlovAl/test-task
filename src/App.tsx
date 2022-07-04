@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import AuthForm from './components/AuthForm';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
@@ -12,14 +11,28 @@ import Registers from './components/user-account/Registers';
 import MetaData from './components/user-account/MetaData';
 import Safety from './components/user-account/Safety';
 import MyDownloads from './components/user-account/MyDownloads';
+import { userAPI } from './services/UserService';
+import { useTypedSelector } from './hooks/useTypedSelector';
+import { useAppDispatch } from './hooks/useAppDispatch';
+import { AuthActionCreators } from './store/reducers/auth/action-creators';
+import { UserActionCreators } from './store/reducers/user/action-creators';
+import { IData } from './models/IUsers';
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(false)
+  const {isAuth} = useTypedSelector(state=>state.authReducer)
+  const {data:users, isError, isLoading} = userAPI.useFetchAllUsersQuery(100);
+  const dispatch = useAppDispatch();
+ // const data =  JSON.parse(localStorage.getItem ("data"));
+  useEffect(()=>{
+    if(localStorage.getItem("auth")){
+      dispatch(AuthActionCreators.setIsAuth(true))
+      //dispatch(UserActionCreators.setUser())
+    }
+  },[])
 
   return (
     <div className="App">
-
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout/>}>
@@ -38,12 +51,10 @@ function App() {
             // Роут для авторизации (доступен только не авторизированным пользователям)
              <Route  path='auth' element={<AuthForm/>}/>
             }
-           
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
-
 export default App;

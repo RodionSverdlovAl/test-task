@@ -2,7 +2,7 @@ interface IAuth{
     username: string;
     password: string;
 }
-interface IData{
+export interface IData{
     photo: string;
     name: string;
     surname: string;

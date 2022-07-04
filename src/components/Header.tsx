@@ -1,11 +1,13 @@
 import { useState } from "react"
 import '../styles/header.scss';
 import {Link} from 'react-router-dom'
+import { useTypedSelector } from "../hooks/useTypedSelector";
 const Header:React.FC = () =>{
 
     const [avatar, setAvatar] = useState('../assets/default-avatar.png');
     const [username, setUsername] = useState('Вход в аккаунт');
-    const [isAuth, setIsAuth] = useState(false)
+    const {isAuth} = useTypedSelector(state=>state.authReducer);
+    const {user} = useTypedSelector(state=>state.userReducer);
 
     return(
         <div className="header">
@@ -15,11 +17,14 @@ const Header:React.FC = () =>{
             <button className="header-btn2"><img src="../assets/kalakolchik.png" alt="уведомления" /></button>
             <div className="user">
                 <div className="avatar">
-                    <img src={avatar} height={48} alt="avatar" />
+                    {isAuth
+                        ? <img src={user.photo} height={48} alt="avatar" />
+                        : <img src={avatar} height={48} alt="avatar" />
+                    }
                 </div>
                 <div>
                     {isAuth
-                        ? <Link to='/user' className="username">{username}</Link>
+                        ? <Link to='/user/my-data' className="username">{user.name} {user.surname}</Link>
                         : <Link to='/auth' className="username">{username}</Link>
                     }
                     
