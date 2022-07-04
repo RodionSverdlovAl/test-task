@@ -1,0 +1,49 @@
+{
+    "users":[
+        {
+            "auth": {
+                "username": "Valeriy Jmeshenko",
+                "password": "borrow54"
+            },
+            "data":{
+                "photo": "https://www.meme-arsenal.com/memes/680459996f7aaf45eabdb8f251117b7a.jpg",
+                "name": "Валерий",
+                "surname": "Жмешенко",
+                "fathername": "Альбертович",
+                "state": "Россия",
+                "city": "Самара",
+                "phone": "+75454545454"
+            }
+        },
+        {
+            "auth": {
+                "username": "Rodion Sverdlov",
+                "password": "1234567"
+            },
+            "data":{
+                "photo": "https://sun9-west.userapi.com/sun9-50/s/v1/ig2/m1bmeH7W0Sl_hBrcdnD2CcRPap1EKEv6WfbKu2qTM6iVr_JzwoFBDdVioOHmP-tVrdmD51V63EetWxnC0cYNK2ez.jpg?size=934x934&quality=96&type=album",
+                "name": "Родион",
+                "surname": "Свердлов",
+                "fathername": "Александрович",
+                "state": "Беларусь",
+                "city": "Минск",
+                "phone": "+375336211355"
+            }
+        },
+        {
+            "auth": {
+                "username": "Bogdanchik",
+                "password": "bogdanbogomdan"
+            },
+            "data":{
+                "photo": "https://i1.sndcdn.com/artworks-57eEjChidzxMss7f-jTXcUA-t500x500.jpg",
+                "name": "Богдан",
+                "surname": "Жмешенко",
+                "fathername": "Валерьевич",
+                "state": "Россия",
+                "city": "Самара",
+                "phone": "+734564565445"
+            }
+        }
+    ]
+}
