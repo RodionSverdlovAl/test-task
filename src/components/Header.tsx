@@ -18,13 +18,13 @@ const Header:React.FC = () =>{
             <div className="user">
                 <div className="avatar">
                     {isAuth
-                        ? <img src={user.photo} height={48} alt="avatar" />
+                        ? <img src={user.data.photo} height={48} alt="avatar" />
                         : <img src={avatar} height={48} alt="avatar" />
                     }
                 </div>
                 <div>
                     {isAuth
-                        ? <Link to='/user/my-data' className="username">{user.name} {user.surname}</Link>
+                        ? <Link to='/user/my-data' className="username">{user.data.name} {user.data.surname}</Link>
                         : <Link to='/auth' className="username">{username}</Link>
                     }
                     

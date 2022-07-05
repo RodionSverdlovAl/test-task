@@ -1,7 +1,7 @@
-import { IData } from "../../../models/IUsers";
+import {IUser } from "../../../models/IUsers";
 
 export interface UserState{
-    user: IData
+    user: IUser
 }
 
 export enum UserActionEnum{
@@ -10,7 +10,7 @@ export enum UserActionEnum{
 
 export interface SetUserAction {
     type: UserActionEnum.SET_USER;
-    payload: IData;
+    payload: IUser;
 }
 
 export type UserAction = SetUserAction;

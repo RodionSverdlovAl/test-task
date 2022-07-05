@@ -2,7 +2,6 @@ import '../styles/user-account.scss';
 import {NavLink, useNavigate} from 'react-router-dom'
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { AuthActionCreators } from '../store/reducers/auth/action-creators';
-import { UserActionCreators } from '../store/reducers/user/action-creators';
 const UserNavbar: React.FC = () =>{
 
     const navigate = useNavigate();
@@ -11,9 +10,7 @@ const UserNavbar: React.FC = () =>{
     const exit = () =>{
         dispatch(AuthActionCreators.setIsAuth(false))
         localStorage.removeItem("auth");
-
-        //dispatch(UserActionCreators.setUser({user.data}))
-        localStorage.removeItem("data")
+        localStorage.removeItem("user")
 
         navigate('/')
     }

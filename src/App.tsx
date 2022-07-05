@@ -21,13 +21,14 @@ import { IData } from './models/IUsers';
 function App() {
 
   const {isAuth} = useTypedSelector(state=>state.authReducer)
-  const {data:users, isError, isLoading} = userAPI.useFetchAllUsersQuery(100);
+
   const dispatch = useAppDispatch();
- // const data =  JSON.parse(localStorage.getItem ("data"));
   useEffect(()=>{
+    //localStorage.removeItem("auth");
+    //localStorage.removeItem("user")
     if(localStorage.getItem("auth")){
       dispatch(AuthActionCreators.setIsAuth(true))
-      //dispatch(UserActionCreators.setUser())
+      dispatch(UserActionCreators.setUser(JSON.parse(localStorage.getItem ("user") || "")))
     }
   },[])
 

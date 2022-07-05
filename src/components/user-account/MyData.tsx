@@ -1,24 +1,14 @@
-import { useState } from "react"
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import '../../styles/account/my-data.scss';
 const MyData:React.FC = ()=>{
 
-    const [photo, setPhoto] = useState('https://www.meme-arsenal.com/memes/680459996f7aaf45eabdb8f251117b7a.jpg');
-    const [hello, setHello] = useState('Здравствуй, Валерий');
-
-    const [user, setUser] = useState({
-        name: 'Валерий',
-        surname: 'Жмешенко',
-        fathername: 'Альбертович',
-        state: 'Россия',
-        city: 'Самара',
-        phone: '+75454545454'
-    })
+   const user = useTypedSelector(state=>state.userReducer.user)
 
     return(
         <div className="my-data">
             <div className="photo-hello">
-                <img src={photo} alt="photo" />
-                <h3>{hello}</h3>
+                <img src={user.data.photo} alt="photo" />
+                <h3>Здравствуй, {user.data.name}</h3>
             </div>
             <hr />
             <div className="general-data">
@@ -26,17 +16,17 @@ const MyData:React.FC = ()=>{
                 <form>
                     <div className="first-name">
                         <p>Имя</p>
-                        <input type="text" value={user.name}/>
+                        <input type="text" value={user.data.name}/>
                     </div>
                     
                     <div className="second-name">
                         <p>Фамилия</p>
-                        <input type="text" value={user.surname}/>
+                        <input type="text" value={user.data.surname}/>
                     </div>
                    
                      <div className="father-name">
                         <p>Отчество</p>
-                        <input type="text" value={user.fathername}/>
+                        <input type="text" value={user.data.fathername}/>
                     </div>
                     
 
@@ -64,7 +54,7 @@ const MyData:React.FC = ()=>{
 
                    <div className="mobile-phone">
                        <p>Мобильный телефон</p>
-                       <input type="text" value={user.phone}/>
+                       <input type="text" value={user.data.phone}/>
                    </div> 
                     
                 </form>
@@ -76,7 +66,7 @@ const MyData:React.FC = ()=>{
                 <h2>Пароль</h2>
                 <div className="first-password">
                     <p>Новый пароль</p>
-                    <input type="password" />
+                    <input type="password"/>
                 </div>
                 <div className="second-password">
                     <p>Подтверждение пароля</p>

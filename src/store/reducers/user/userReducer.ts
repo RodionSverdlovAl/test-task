@@ -2,13 +2,20 @@ import { UserAction, UserActionEnum, UserState } from "./types"
 
 const initialState:UserState = {
     user: {
-        photo:'',
-        name:'',
-        surname:'',
-        fathername:'',
-        state: '',
-        city:'',
-        phone:'',
+        auth:{
+            username: '',
+            password: '',
+        },
+        data:{
+            photo:'',
+            name:'',
+            surname:'',
+            fathername:'',
+            state: '',
+            city:'',
+            phone:'',
+        }
+       
     },
 }
 

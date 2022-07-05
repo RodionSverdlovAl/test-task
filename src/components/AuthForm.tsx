@@ -19,14 +19,11 @@ const AuthForm = () =>{
     const Auth = () =>{
         users && users.forEach(user=>{
             if(user.auth.username == username && user.auth.password == password){
-                console.log('Пользователь авторизован');
-                // остальная логика
-
                dispatch(AuthActionCreators.setIsAuth(true))
                localStorage.setItem("auth", "true");
 
-               dispatch(UserActionCreators.setUser(user.data))
-               localStorage.setItem("data", JSON.stringify(user.data))
+               dispatch(UserActionCreators.setUser(user))
+               localStorage.setItem("user", JSON.stringify(user))
 
                navigate('/')
             }
