@@ -1,8 +1,31 @@
+import { useState } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { countries } from "../../location";
+import { BY_cities } from "../../location";
+import { RF_cities } from "../../location";
+import { IUser } from "../../models/IUsers";
 import '../../styles/account/my-data.scss';
 const MyData:React.FC = ()=>{
 
    const user = useTypedSelector(state=>state.userReducer.user)
+   const [selectedCountry, setSelectedCountry] = useState<string>(user.data.state);
+   const [selectedCity, setSelectedCity] = useState<string>(user.data.city);
+
+   const [updateUser,setUpdateUser] = useState<IUser>({
+        auth: {
+            username: user.auth.username,
+            password: user.auth.password
+        },
+        data:{
+            photo: user.data.photo,
+            name: user.data.name,
+            surname: user.data.surname,
+            fathername: user.data.fathername,
+            state: user.data.state,
+            city: user.data.city,
+            phone: user.data.phone
+        }
+   })
 
     return(
         <div className="my-data">
@@ -29,19 +52,35 @@ const MyData:React.FC = ()=>{
                         <input type="text" value={user.data.fathername}/>
                     </div>
                     
-
                     <div className="state">
                         <p>Страна</p>
-                        <select name="" id="">
-                            <option value="Беларусь">Беларусь</option>
-                            <option selected value="Россия">Россия</option>
-                            <option value="Другая страна">Другая страна</option>
+                        <select onChange={e=>setSelectedCountry(e.target.value)}>
+                            <option selected value={user.data.state}>{user.data.state}</option>
+                            {countries.filter(country => country.value!== user.data.state)
+                                .map(country=><option value={country.value}>{country.name}</option>
+                            )}
                         </select>
                     </div>
                   
                     <div className="city">
                         <p>Город</p>
-                        <select name="" id="">
+
+                        {/* <MyDataSelect options={}/> */}
+                        {
+                            selectedCountry == "Беларусь" ?
+                            <select>
+                                 <option value={user.data.city}>{user.data.city}</option>
+                                 {BY_cities.filter(city =>city.value!==user.data.city)
+                                 .map(city=><option value={city.value}>{city.name}</option>)}
+                            </select>
+                            :
+                            <select>
+                                 <option value={user.data.city}>{user.data.city}</option>
+                                 {RF_cities.filter(city =>city.value!==user.data.city)
+                                 .map(city=><option value={city.value}>{city.name}</option>)}
+                            </select>
+                        }
+                        {/* <select name="" id="">
                             <option value="">Минск</option>
                             <option value="">Гомель</option>
                             <option value="">Могилев</option>
@@ -49,7 +88,7 @@ const MyData:React.FC = ()=>{
                             <option value="">Гродно</option>
                             <option value="">Брест</option>
                             <option selected value="">Самара</option>
-                        </select>
+                        </select> */}
                     </div>
 
                    <div className="mobile-phone">
