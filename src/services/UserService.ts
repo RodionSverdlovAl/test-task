@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from'@reduxjs/toolkit/dist/query/react'
+import { useResolvedPath } from 'react-router-dom'
 import { IUser } from '../models/IUsers'
 export const userAPI = createApi({
     reducerPath: 'userAPI',
@@ -13,6 +14,14 @@ export const userAPI = createApi({
                 }
             }),
             providesTags: result =>['Users']
-        })
+        }),
+        updateUser: build.mutation<IUser, IUser>({
+            query: (user)=>({
+                url: `/users/${user.id}`,
+                method: "PUT",
+                body: user,
+            }),
+            invalidatesTags: ['Users']
+        }),
     })
 })

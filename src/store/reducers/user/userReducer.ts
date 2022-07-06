@@ -2,6 +2,7 @@ import { UserAction, UserActionEnum, UserState } from "./types"
 
 const initialState:UserState = {
     user: {
+        id: 0,
         auth:{
             username: '',
             password: '',
@@ -15,7 +16,6 @@ const initialState:UserState = {
             city:'',
             phone:'',
         }
-       
     },
 }
 

@@ -13,6 +13,7 @@ export interface IData{
 }
 
 export interface IUser {
+    id: number;
     auth: IAuth;
     data: IData;
 }

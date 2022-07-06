@@ -1,31 +1,60 @@
 import { useState } from "react";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { countries } from "../../location";
 import { BY_cities } from "../../location";
 import { RF_cities } from "../../location";
 import { IUser } from "../../models/IUsers";
+import { userAPI } from "../../services/UserService";
+import { UserActionCreators } from "../../store/reducers/user/action-creators";
 import '../../styles/account/my-data.scss';
 const MyData:React.FC = ()=>{
 
    const user = useTypedSelector(state=>state.userReducer.user)
-   const [selectedCountry, setSelectedCountry] = useState<string>(user.data.state);
-   const [selectedCity, setSelectedCity] = useState<string>(user.data.city);
+   const [update, {}] = userAPI.useUpdateUserMutation();
+   
+   const dispatch = useAppDispatch();
 
-   const [updateUser,setUpdateUser] = useState<IUser>({
-        auth: {
-            username: user.auth.username,
-            password: user.auth.password
+   const updateUser =async() =>{
+     const upUser ={
+        id: user.id,
+        auth:{
+            username: username,
+            password: password
         },
         data:{
             photo: user.data.photo,
-            name: user.data.name,
-            surname: user.data.surname,
-            fathername: user.data.fathername,
-            state: user.data.state,
-            city: user.data.city,
-            phone: user.data.phone
+            name: name,
+            surname: surname,
+            fathername: fathername,
+            state: selectedCountry,
+            city: selectedCity,
+            phone: phone,
         }
-   })
+     }
+     await update(upUser);
+     dispatch(UserActionCreators.setUser(upUser))
+     localStorage.setItem("user", JSON.stringify(upUser))
+     alert('Информация о пользователе Измененна')
+   }
+
+
+   const [selectedCountry, setSelectedCountry] = useState<string>(user.data.state);
+   const [selectedCity, setSelectedCity] = useState<string>(user.data.city);
+
+
+   const [id,setId] = useState<number>(user.id)
+
+   const [username, setUsername] = useState<string>(user.auth.username);
+   const [password,setPassword] = useState<string>(user.auth.password);
+
+   const [photo,setPhoto] = useState<string>(user.data.photo);
+   const [name, setName] = useState<string>(user.data.name);
+   const [surname, setSurname] = useState<string>(user.data.surname);
+   const [fathername, setFathername] = useState<string>(user.data.fathername);
+   const [state,setState] = useState<string>(user.data.state);
+   const [city, setCity] = useState<string>(user.data.city)
+   const [phone, setPhone] = useState<string>(user.data.phone)
 
     return(
         <div className="my-data">
@@ -38,20 +67,17 @@ const MyData:React.FC = ()=>{
                 <h2>Основные данные</h2>
                 <form>
                     <div className="first-name">
-                        <p>Имя</p>
-                        <input type="text" value={user.data.name}/>
+                        <p>Имя</p> 
+                        <input onChange={e=>setName(e.target.value)} type="text" value={name}/>
                     </div>
-                    
                     <div className="second-name">
-                        <p>Фамилия</p>
-                        <input type="text" value={user.data.surname}/>
+                        <p>Фамилия</p> 
+                        <input onChange={e=>setSurname(e.target.value)} type="text" value={surname}/>
                     </div>
-                   
                      <div className="father-name">
-                        <p>Отчество</p>
-                        <input type="text" value={user.data.fathername}/>
+                        <p>Отчество</p> 
+                        <input onChange={e=>setFathername(e.target.value)} type="text" value={fathername}/>
                     </div>
-                    
                     <div className="state">
                         <p>Страна</p>
                         <select onChange={e=>setSelectedCountry(e.target.value)}>
@@ -61,14 +87,11 @@ const MyData:React.FC = ()=>{
                             )}
                         </select>
                     </div>
-                  
                     <div className="city">
                         <p>Город</p>
-
-                        {/* <MyDataSelect options={}/> */}
                         {
                             selectedCountry == "Беларусь" ?
-                            <select>
+                            <select onChange={e=>setSelectedCity(e.target.value)}>
                                  <option value={user.data.city}>{user.data.city}</option>
                                  {BY_cities.filter(city =>city.value!==user.data.city)
                                  .map(city=><option value={city.value}>{city.name}</option>)}
@@ -80,22 +103,11 @@ const MyData:React.FC = ()=>{
                                  .map(city=><option value={city.value}>{city.name}</option>)}
                             </select>
                         }
-                        {/* <select name="" id="">
-                            <option value="">Минск</option>
-                            <option value="">Гомель</option>
-                            <option value="">Могилев</option>
-                            <option value="">Витебск</option>
-                            <option value="">Гродно</option>
-                            <option value="">Брест</option>
-                            <option selected value="">Самара</option>
-                        </select> */}
                     </div>
-
                    <div className="mobile-phone">
                        <p>Мобильный телефон</p>
-                       <input type="text" value={user.data.phone}/>
-                   </div> 
-                    
+                       <input onChange={e=>setPhone(e.target.value)} type="text" value={phone}/>
+                   </div>  
                 </form>
             </div>
 
@@ -115,7 +127,7 @@ const MyData:React.FC = ()=>{
 
             <hr className="bottom-hr" />
 
-            <button className="save">Сохранить</button>
+            <button onClick={updateUser} className="save">Сохранить</button>
             
         </div>
     )
