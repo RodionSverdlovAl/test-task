@@ -12,6 +12,7 @@
         padding-bottom: 20px;
         padding-left: 199px;
     }
+
     .auth{
         margin-left: 110px;
         p{
@@ -51,6 +52,17 @@
                 font-size: 16px;
                 color: #A8AAAE;
             }
+        }
+        .error{
+            font-size: 12px;
+            color:#E0371F;
+        }
+        .greenicon{
+            margin-top: 18px;
+            margin-left: 12px;
+        }
+        .right{
+            display: flex;
         }
         button{
             width: 430px;

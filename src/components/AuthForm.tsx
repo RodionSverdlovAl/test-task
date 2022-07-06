@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { userAPI } from '../services/UserService';
 import '../styles/auth-form.scss';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,10 @@ const AuthForm = () =>{
 
     const [username,setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [usernameDirty, setUsenameDirty] = useState<boolean>(false);
+    const [passwordDirty, setPasswordDirty] = useState<boolean>(false);
+    const [usernameError, setUsernameError] = useState<string>('Имя пользователя не может быть пустым');
+    const [passwordError, setPasswordError] = useState<string>('Неправильный пароль');
 
     const {data:users, isError, isLoading} = userAPI.useFetchAllUsersQuery(100);
 
@@ -31,15 +35,111 @@ const AuthForm = () =>{
         })
     }
 
+    const blurHandler = (e:any)=>{
+
+        switch(e.target.name){
+            case 'username':
+                setUsenameDirty(true);break;
+            case 'password':
+                setPasswordDirty(true);break;
+        }
+    }
+
+    const [rigthPassword, setRigthPassword] = useState<boolean>(false);
+    useEffect(()=>{
+        let passwords:string[] = [];
+        users && users.forEach(user=>{
+            passwords.push(user.auth.password)
+            if(user.auth.username == username && user.auth.password == password){
+                setPasswordError('');
+                setPasswordDirty(false);
+                setRigthPassword(true);
+            }
+        })
+        if(!passwords.includes(password)){
+            setPasswordError('Неверный пароль');
+            setRigthPassword(false)
+        }
+    },[password])
+
+
+    const [rightUsername, setRightUsername] = useState<boolean>(false);
+    useEffect(()=>{
+        console.log(username)
+        let usernames:string[] = [];
+        users && users.forEach(user=>{
+            usernames.push(user.auth.username)
+            console.log(usernames)
+        })
+        
+        if(usernames.includes(username)){
+            setUsernameError('')
+            console.log('пользователь существует')
+            setUsenameDirty(false);
+            setRightUsername(true);
+        }else{
+            setUsernameError('Пользователя с таким именем не существует')
+            setRightUsername(false);
+            
+        }
+    },[username])
+
+    // const usernameHandler = (e: any) =>{
+        
+    // }
+
     return(
         <div className="Auth-form">
             <h1>АВТОРИЗАЦИЯ</h1>
 
-            <div className="auth">
-                <p style={{color:'#009CB4'}}>Имя</p>
-                <input value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
-                <p>Пароль</p>
-                <input value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
+            <div className="auth"> 
+                {
+
+                rightUsername 
+                ?
+                    <>
+                        <p>Имя</p>
+                        <div className='right'>
+                            <input style={{ border: "1px solid #00B247"}} onBlur={e=>blurHandler(e)} name='username' value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
+                            <div className='greenicon'><img src="../assets/greenicon.png" alt="greenicon" /></div>
+                        </div>
+                       
+                    </>
+                :
+                    <>
+                        <div>
+                            <p className='active-username'>Имя</p>
+                            <input onBlur={e=>blurHandler(e)} name='username' value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
+                        </div>
+                    </>
+                }
+
+                {
+                    (passwordDirty&& passwordError)
+                    ?
+                    <>
+                        <p style={{color:'red'}}>Пароль</p>
+                        <input style={{ border: "1px solid #E0371F"}} onBlur={e=>blurHandler(e)} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
+                        {password.length == 0 ? <div className='error'>Поле не должно быть пустым</div> : <div className='error'>{passwordError}</div> }
+                    </>
+                    : rigthPassword
+                        ?
+                        <>
+                            <p>Пароль</p>
+                            <div className='right'>
+                                <input style={{ border: "1px solid #00B247"}} onBlur={e=>blurHandler(e)} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
+                                <div className='greenicon'><img src="../assets/greenicon.png" alt="greenicon" /></div>
+                            </div>
+                          
+                        </>
+                        :
+                        <>
+                            <p>Пароль</p>
+                            <input onBlur={e=>blurHandler(e)} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
+                            
+                        </>
+                }
+
                 <div className="checkbox">
                    <div> <input type="checkbox" /></div>
                    <div><p>Запомнить меня на этом компьютере</p></div>
@@ -51,8 +151,7 @@ const AuthForm = () =>{
                    <p><a href="#">Авторизация с использованием ЕС ИФЮЛ</a></p> 
                 </div>
                 <div className='additional-auth'>
-                    <p><a href="#">Авторизация с использованием МСИ</a></p>
-                    
+                    <p><a href="#">Авторизация с использованием МСИ</a></p> 
                 </div>
             </div>
             <div className='reg-link'>
