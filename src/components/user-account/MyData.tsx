@@ -4,7 +4,6 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { countries } from "../../location";
 import { BY_cities } from "../../location";
 import { RF_cities } from "../../location";
-import { IUser } from "../../models/IUsers";
 import { userAPI } from "../../services/UserService";
 import { UserActionCreators } from "../../store/reducers/user/action-creators";
 import '../../styles/account/my-data.scss';
@@ -12,31 +11,7 @@ const MyData:React.FC = ()=>{
 
    const user = useTypedSelector(state=>state.userReducer.user)
    const [update, {}] = userAPI.useUpdateUserMutation();
-   
    const dispatch = useAppDispatch();
-
-   const updateUser =async() =>{
-     const upUser ={
-        id: user.id,
-        auth:{
-            username: username,
-            password: password
-        },
-        data:{
-            photo: user.data.photo,
-            name: name,
-            surname: surname,
-            fathername: fathername,
-            state: selectedCountry,
-            city: selectedCity,
-            phone: phone,
-        }
-     }
-     await update(upUser);
-     dispatch(UserActionCreators.setUser(upUser))
-     localStorage.setItem("user", JSON.stringify(upUser))
-     alert('Информация о пользователе Измененна')
-   }
 
 
    const [selectedCountry, setSelectedCountry] = useState<string>(user.data.state);
@@ -54,7 +29,42 @@ const MyData:React.FC = ()=>{
    const [fathername, setFathername] = useState<string>(user.data.fathername);
    const [state,setState] = useState<string>(user.data.state);
    const [city, setCity] = useState<string>(user.data.city)
-   const [phone, setPhone] = useState<string>(user.data.phone)
+   const [phone, setPhone] = useState<string>(user.data.phone);
+
+
+   const [newPassword, setNewPassword] = useState<string>('');
+   const [newPassword_2, setNewPassword_2] = useState<string>('');
+
+
+   const updateUser =async() =>{
+    if(newPassword == newPassword_2){
+       if(newPassword.length>0){
+           setPassword(newPassword)
+       }
+       const upUser ={
+           id: user.id,
+           auth:{
+               username: username,
+               password: password
+           },
+           data:{
+               photo: user.data.photo,
+               name: name,
+               surname: surname,
+               fathername: fathername,
+               state: selectedCountry,
+               city: selectedCity,
+               phone: phone,
+           }
+        }
+        await update(upUser);
+        dispatch(UserActionCreators.setUser(upUser))
+        localStorage.setItem("user", JSON.stringify(upUser))
+        alert('Информация о пользователе Измененна')
+    }else{
+       alert('Пароли не совпадают')
+    }
+  }
 
     return(
         <div className="my-data">
@@ -113,15 +123,16 @@ const MyData:React.FC = ()=>{
 
             <hr className="middle-hr" />
 
+
             <div className="password-form">
                 <h2>Пароль</h2>
                 <div className="first-password">
                     <p>Новый пароль</p>
-                    <input type="password"/>
+                    <input value={newPassword} onChange={e=>setNewPassword(e.target.value)} type="password"/>
                 </div>
                 <div className="second-password">
                     <p>Подтверждение пароля</p>
-                    <input type="password" />
+                    <input value = {newPassword_2} onChange={e=>setNewPassword_2(e.target.value)} type="password" />
                 </div>
             </div>
 
