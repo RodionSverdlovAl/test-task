@@ -10,11 +10,8 @@ const AuthForm = () =>{
 
     const [username,setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [usernameDirty, setUsenameDirty] = useState<boolean>(false);
     const [passwordDirty, setPasswordDirty] = useState<boolean>(false);
-    const [usernameError, setUsernameError] = useState<string>('Имя пользователя не может быть пустым');
     const [passwordError, setPasswordError] = useState<string>('Неправильный пароль');
-
     const {data:users, isError, isLoading} = userAPI.useFetchAllUsersQuery(100);
 
     const navigate = useNavigate();
@@ -35,14 +32,8 @@ const AuthForm = () =>{
         })
     }
 
-    const blurHandler = (e:any)=>{
-
-        switch(e.target.name){
-            case 'username':
-                setUsenameDirty(true);break;
-            case 'password':
-                setPasswordDirty(true);break;
-        }
+    const blurHandler = ()=>{
+        setPasswordDirty(true);
     }
 
     const [rigthPassword, setRigthPassword] = useState<boolean>(false);
@@ -73,20 +64,13 @@ const AuthForm = () =>{
         })
         
         if(usernames.includes(username)){
-            setUsernameError('')
             console.log('пользователь существует')
-            setUsenameDirty(false);
             setRightUsername(true);
         }else{
-            setUsernameError('Пользователя с таким именем не существует')
             setRightUsername(false);
             
         }
     },[username])
-
-    // const usernameHandler = (e: any) =>{
-        
-    // }
 
     return(
         <div className="Auth-form">
@@ -100,16 +84,15 @@ const AuthForm = () =>{
                     <>
                         <p>Имя</p>
                         <div className='right'>
-                            <input style={{ border: "1px solid #00B247"}} onBlur={e=>blurHandler(e)} name='username' value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
+                            <input style={{ border: "1px solid #00B247"}}name='username' value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
                             <div className='greenicon'><img src="../assets/greenicon.png" alt="greenicon" /></div>
                         </div>
-                       
                     </>
                 :
                     <>
                         <div>
                             <p className='active-username'>Имя</p>
-                            <input onBlur={e=>blurHandler(e)} name='username' value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
+                            <input name='username' value={username} onChange={e=>setUsername(e.target.value)} type="text" placeholder='Введите имя' />
                         </div>
                     </>
                 }
@@ -119,7 +102,7 @@ const AuthForm = () =>{
                     ?
                     <>
                         <p style={{color:'red'}}>Пароль</p>
-                        <input style={{ border: "1px solid #E0371F"}} onBlur={e=>blurHandler(e)} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
+                        <input style={{ border: "1px solid #E0371F"}} onBlur={blurHandler} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
                         {password.length == 0 ? <div className='error'>Поле не должно быть пустым</div> : <div className='error'>{passwordError}</div> }
                     </>
                     : rigthPassword
@@ -127,7 +110,7 @@ const AuthForm = () =>{
                         <>
                             <p>Пароль</p>
                             <div className='right'>
-                                <input style={{ border: "1px solid #00B247"}} onBlur={e=>blurHandler(e)} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
+                                <input style={{ border: "1px solid #00B247"}} onBlur={blurHandler} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
                                 <div className='greenicon'><img src="../assets/greenicon.png" alt="greenicon" /></div>
                             </div>
                           
@@ -135,8 +118,7 @@ const AuthForm = () =>{
                         :
                         <>
                             <p>Пароль</p>
-                            <input onBlur={e=>blurHandler(e)} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
-                            
+                            <input onBlur={blurHandler} name='password' value={password} onChange={e=>setPassword(e.target.value)} type="password" placeholder='Введите пароль'/><br />
                         </>
                 }
 
