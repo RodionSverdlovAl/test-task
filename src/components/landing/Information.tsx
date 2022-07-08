@@ -1,4 +1,4 @@
-import '../styles/information.scss';
+import '../../styles/information.scss';
 
 const Information:React.FC = () =>{
     return(
